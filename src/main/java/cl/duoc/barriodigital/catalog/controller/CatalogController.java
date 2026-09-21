@@ -61,4 +61,11 @@ public class CatalogController {
     public ResponseEntity<ProcedureType> restoreQuota(@PathVariable Long id) {
         return ResponseEntity.ok(catalogService.restoreQuota(id));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProcedure(@PathVariable Long id) {
+        catalogService.deleteProcedure(id);
+        return ResponseEntity.noContent().build();
+    }
 }
+

@@ -84,6 +84,16 @@ public class CatalogService {
         return repository.save(procedure);
     }
 
+    @Transactional
+    public void deleteProcedure(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Tipo de trámite no encontrado con ID: " + id);
+        }
+        repository.deleteById(id);
+        log.info("Tipo de trámite con ID {} eliminado correctamente", id);
+    }
+
+
     @PostConstruct
     public void initData() {
         if (repository.count() == 0) {
